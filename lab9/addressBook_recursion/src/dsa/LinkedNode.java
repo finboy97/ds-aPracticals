@@ -197,8 +197,26 @@ public class LinkedNode<T> {
 		 * 			(i.e. when the processing has come to the end of the list, but
 		 * 					position is still > 1).
 		 */
-		
-		
+		T toBeReturned = null;
+		int counter = 1;
+		int location = position;
+		//base case - if the position given in the method call == position, you are at the correct element therefore return it.
+		if (counter == location)
+		{
+			toBeReturned = getElement();
+		}else
+		//if you aren't at the right element you need to get next node (unless it's null) and call getElement for that node.
+		{
+			if(getNext() == null) 
+			{
+				throw new NoSuchElementException("The specified element doesn't exist");
+			}else
+			{
+			counter += 1;
+			getElementAt(counter);
+			}
+		}
+		return toBeReturned;
 	}
 	
 	/**
@@ -215,6 +233,16 @@ public class LinkedNode<T> {
 		 * 		What should be returned in each case?
 		 */
 
+		int counter = 0;
+		//base case
+		if(getNext()==null)
+		{
+			counter = 1;
+		} else
+		{ //recursive step
+			counter = counter + getNext().size();
+		}
+		return counter;
 	}
 
 	/** 
@@ -231,7 +259,17 @@ public class LinkedNode<T> {
 		 * 
 		 * 		What does the returning String look like in each case?
 		 */
-		
+		//set-up empty string object
+		String newString = "";
+		//base case: getNext = null, concat element onto newString
+		if(getNext() == null)
+		{
+			newString = getElement() + newString;
+		} else //recursive step
+		{
+			newString = getElement() + getNext().toString();
+		}
+		return newString;
 	}
 	
 	/**
