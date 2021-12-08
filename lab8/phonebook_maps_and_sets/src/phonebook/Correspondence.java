@@ -5,6 +5,7 @@ package phonebook;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.lang.Comparable;
 
 /**
  * A class to model a phone record in a phone book.
@@ -20,7 +21,7 @@ import java.util.Set;
  * Make sure that you have passed an appropriate value to EACH of the type variables declared in 
  * the interfaces java.lang.Comparable and phonebook.Contact.
  */
-public class Correspondence 
+public class Correspondence<Contact> implements Comparable<Contact>
 {
 	private String nickname;				// the nickname for this correspondence
 	private String name;					// the name of this correspondence 
@@ -103,7 +104,11 @@ public class Correspondence
 	 * (non-Javadoc)
 	 * @see phonebook.KeyValuePair#key()
 	 */
-	
+	public String key()
+	{
+		String key = nickname + " (" + name + ")";
+		return key;
+	}
 
 	/* !!!!
 	 * Returns the value for this object.
@@ -111,6 +116,7 @@ public class Correspondence
 	 * (non-Javadoc)
 	 * @see phonebook.KeyValuePair#value()
 	 */
+
 	
 	
 	/*
@@ -122,14 +128,14 @@ public class Correspondence
 	 * (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	public int compareTo(Correspondence another) {
+	public int compareTo(Contact another) {
 
 		/* !!!!
 		 * The natural order of Correspondence objects are defined
 		 * in terms of the objects' keys. 
 		 */
 		
-		
+		return this.compareTo(another);
 		
 	}
 	
@@ -187,7 +193,7 @@ public class Correspondence
 		 * the key of this object.
 		 */
 		
-		
+		return this.hashCode();
 	}
 
 }

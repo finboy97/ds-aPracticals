@@ -60,14 +60,16 @@ public class PhoneBook<K,R extends Contact<K,R,Ph>, Ph> {
 			/* !!!! 
 			 * Add a new key-value pair to the "byName" map
 			 */
-			
+			byName.put(record.key(), record.value());
 		}
 		else {
 			/* !!!! 
 			 * Add the new phone number(s) to an existing record in the phone book.
 			 */
-			
-		
+			//phone numbers are a set (see Contact.java class) - we want to add a value to that set (a new phone number)
+			//do we need to check if the given number already is in the phone book? - No that is done anyway by the set add operation.
+
+				R temp = byName.get(record.key());
 		}
 		/* !!!!
 		 * Add the new phone number and correspondence associations to
